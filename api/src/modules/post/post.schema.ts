@@ -8,8 +8,8 @@ const postInput = {
 
 const postGenerated = {
   id: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  created_at: z.string(),
+  updated_at: z.string(),
 };
 
 const createPostSchema = z.object({
