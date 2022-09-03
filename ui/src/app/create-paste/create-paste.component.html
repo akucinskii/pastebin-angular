@@ -1,0 +1,26 @@
+<p>create-paste works!</p>
+
+<form #pasteForm="ngForm" (ngSubmit)="onPasteCreate(pasteForm.value)">
+  <div class="form-group">
+    <label for="paste-title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="paste-title"
+      name="title"
+      placeholder="Paste Title"
+      ngModel
+    />
+  </div>
+  <div class="form-group">
+    <label for="paste-content">Content</label>
+    <textarea
+      class="form-control"
+      id="paste-content"
+      rows="3"
+      name="content"
+      ngModel
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

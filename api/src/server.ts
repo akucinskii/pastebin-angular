@@ -3,11 +3,14 @@ import { withRefResolver } from "fastify-zod";
 import { postSchemas } from "./modules/post/post.schema";
 import { postRoutes } from "./modules/post/post.route";
 import swagger from "@fastify/swagger";
+import cors from "@fastify/cors";
 
 function buildServer() {
   const server = fastify({
     logger: true,
   });
+
+  server.register(cors);
 
   for (const schema of [...postSchemas]) {
     server.addSchema(schema);

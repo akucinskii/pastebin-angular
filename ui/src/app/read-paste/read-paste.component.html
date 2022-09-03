@@ -1,0 +1,15 @@
+<div>
+  <h1>{{ paste.title }}</h1>
+
+  <p>{{ paste.content }}</p>
+
+  <div #container>
+    <button
+      ngxClipboard
+      [cbContent]="'http://localhost:4200/read/' + id"
+      [container]="container"
+    >
+      Copy link to clipboard
+    </button>
+  </div>
+</div>
