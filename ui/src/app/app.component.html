@@ -1,16 +1,26 @@
-<h1>Angular Router App</h1>
 <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li>
+<div class="w-100 h-100">
+  <nav
+    class="navbar bg-neutral text-neutral-content gap-4 justify-center md:justify-start"
+  >
+    <div class="">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        class="btn normal-case md:text-xl"
+      >
+        Angular pastebin app
+      </a>
       <a
         routerLink="/create"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        >Create new paste</a
       >
-    </li>
-  </ul>
-</nav>
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+        <button class="btn normal-case md:text-xl">Create</button>
+      </a>
+    </div>
+  </nav>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>
+</div>
