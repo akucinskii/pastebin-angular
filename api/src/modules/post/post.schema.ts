@@ -10,6 +10,7 @@ const postGenerated = {
   id: z.string(),
   created_at: z.string(),
   updated_at: z.string(),
+  total_views: z.number(),
 };
 
 const createPostSchema = z.object({

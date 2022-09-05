@@ -14,3 +14,16 @@ export const getPost = async (id: string) => {
     },
   });
 };
+
+export const updateTotalViews = async (id: string) => {
+  return prisma.post.update({
+    where: {
+      id,
+    },
+    data: {
+      total_views: {
+        increment: 1,
+      },
+    },
+  });
+};

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 interface PasteInterface {
   title: string;
   content: string;
+  total_views: number;
 }
 
 @Component({

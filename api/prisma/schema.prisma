@@ -11,9 +11,10 @@ datasource db {
 }
 
 model Post {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  title      String
-  content    String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  title       String
+  content     String
+  total_views Int      @default(0)
 }
