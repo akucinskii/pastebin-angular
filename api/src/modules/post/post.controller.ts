@@ -1,6 +1,6 @@
 import { FastifyRequest } from "fastify/types/request";
 import { CreatePostInput } from "./post.schema";
-import { createPost, getPost } from "./post.service";
+import { createPost, getPost, updateTotalViews } from "./post.service";
 import { IdParams } from "./types";
 
 export const createPostHandler = async (
@@ -16,6 +16,8 @@ export const createPostHandler = async (
 export const getPostHandler = async (
   request: FastifyRequest<{ Params: IdParams }>
 ) => {
+  await updateTotalViews(request.params.id);
+
   const post = await getPost(request.params.id);
 
   return post;
