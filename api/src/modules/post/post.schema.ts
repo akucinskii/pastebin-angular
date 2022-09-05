@@ -2,7 +2,7 @@ import { z } from "zod";
 import { buildJsonSchemas } from "fastify-zod";
 
 const postInput = {
-  title: z.string().min(3).max(50),
+  title: z.string().min(3).max(250),
   content: z.string(),
 };
 
