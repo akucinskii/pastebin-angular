@@ -1,15 +1,18 @@
 <div>
-  <h1>{{ paste.title }}</h1>
+  <h1 class="text-2xl text-center break-all my-2">{{ paste.title }}</h1>
+</div>
 
-  <p>{{ paste.content }}</p>
+<div class="mockup-code text-xl max-w-lg break-all p-4">
+  {{ paste.content }}
+</div>
 
-  <div #container>
-    <button
-      ngxClipboard
-      [cbContent]="'http://localhost:4200/read/' + id"
-      [container]="container"
-    >
-      Copy link to clipboard
-    </button>
-  </div>
+<div #container class="my-4">
+  <button
+    class="btn btn-accent"
+    ngxClipboard
+    [cbContent]="'http://localhost:4200/read/' + id"
+    [container]="container"
+  >
+    Copy link to clipboard
+  </button>
 </div>
