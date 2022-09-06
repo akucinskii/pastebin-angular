@@ -4,6 +4,18 @@ import { postSchemas } from "./modules/post/post.schema";
 import { postRoutes } from "./modules/post/post.route";
 import swagger from "@fastify/swagger";
 import cors from "@fastify/cors";
+import { JWT } from "@fastify/jwt";
+import { userSchemas } from "./modules/user/user.schema";
+import userRoutes from "./modules/user/user.route";
+
+declare module "fastify" {
+  interface FastifyRequest {
+    jwt: JWT;
+  }
+  export interface FastifyInstance {
+    authenticate: any;
+  }
+}
 
 function buildServer() {
   const server = fastify({
@@ -12,9 +24,14 @@ function buildServer() {
 
   server.register(cors);
 
-  for (const schema of [...postSchemas]) {
+  for (const schema of [...postSchemas, ...userSchemas]) {
     server.addSchema(schema);
   }
+
+  server.addHook("preHandler", (req, reply, next) => {
+    req.jwt = server.jwt;
+    return next();
+  });
 
   server.register(
     swagger,
@@ -32,6 +49,7 @@ function buildServer() {
     })
   );
 
+  server.register(userRoutes, { prefix: "api/" });
   server.register(postRoutes, { prefix: "api/post" });
 
   server.get("/healthcheck", async function () {
