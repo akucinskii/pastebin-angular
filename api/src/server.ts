@@ -1,4 +1,4 @@
-import fastify from "fastify";
+import fastify, { FastifyReply, FastifyRequest } from "fastify";
 import { withRefResolver } from "fastify-zod";
 import { postSchemas } from "./modules/post/post.schema";
 import { postRoutes } from "./modules/post/post.route";
@@ -33,6 +33,21 @@ function buildServer() {
     return next();
   });
 
+  server.decorate(
+    "authenticate",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      try {
+        await request.jwtVerify();
+      } catch (e) {
+        return reply.send(e);
+      }
+    }
+  );
+
+  server.register(require("@fastify/jwt"), {
+    secret: "supersecret",
+  });
+
   server.register(
     swagger,
     withRefResolver({
@@ -49,7 +64,7 @@ function buildServer() {
     })
   );
 
-  server.register(userRoutes, { prefix: "api/" });
+  server.register(userRoutes, { prefix: "api/user" });
   server.register(postRoutes, { prefix: "api/post" });
 
   server.get("/healthcheck", async function () {
