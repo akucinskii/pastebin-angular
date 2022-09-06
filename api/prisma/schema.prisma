@@ -17,4 +17,14 @@ model Post {
   title       String
   content     String
   total_views Int      @default(0)
+  author      User?    @relation(fields: [authorId], references: [id])
+  authorId    String?
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  password String
+  salt     String
+  name     String @unique
+  posts    Post[]
 }
