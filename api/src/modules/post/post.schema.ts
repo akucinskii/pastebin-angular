@@ -24,7 +24,10 @@ const postResponseSchema = z.object({
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;
 
-export const { schemas: postSchemas, $ref } = buildJsonSchemas({
-  createPostSchema,
-  postResponseSchema,
-});
+export const { schemas: postSchemas, $ref } = buildJsonSchemas(
+  {
+    createPostSchema,
+    postResponseSchema,
+  },
+  { $id: "paste" }
+);
