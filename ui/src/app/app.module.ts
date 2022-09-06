@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
 import { CreatePasteComponent } from './create-paste/create-paste.component';
 import { ReadPasteComponent } from './read-paste/read-paste.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, CreatePasteComponent, ReadPasteComponent, LoginComponent],
+  declarations: [AppComponent, CreatePasteComponent, ReadPasteComponent, LoginComponent, RegisterComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ClipboardModule],
   providers: [],
   bootstrap: [AppComponent],
