@@ -18,7 +18,7 @@ model Post {
   content     String
   total_views Int      @default(0)
   author      User?    @relation(fields: [authorId], references: [id])
-  authorId    String?
+  authorId    String?  @db.ObjectId
 }
 
 model User {

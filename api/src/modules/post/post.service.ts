@@ -8,11 +8,17 @@ export const createPost = async (data: CreatePostInput) => {
 };
 
 export const getPost = async (id: string) => {
-  return prisma.post.findUnique({
+  const xd = await prisma.post.findUnique({
     where: {
       id,
     },
+    include: {
+      author: true,
+    },
   });
+
+  console.log("AAAAAAAAA", xd);
+  return xd;
 };
 
 export const updateTotalViews = async (id: string) => {
