@@ -6,7 +6,10 @@ interface PasteInterface {
   title: string;
   content: string;
   total_views: number;
-  author: string | undefined;
+  author: {
+    id: string;
+    name: string;
+  };
 }
 
 @Component({
