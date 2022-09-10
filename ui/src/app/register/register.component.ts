@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
     this.http
       .post('http://localhost:3001/api/user/', userInput)
       .subscribe((res: any) => {
-        console.log(res);
         this._router.navigate([`/login`]);
       });
   }

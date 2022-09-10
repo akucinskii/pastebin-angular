@@ -30,7 +30,6 @@ export class ReadPasteComponent implements OnInit {
       .get(`http://localhost:3001/api/post/${this.id}`)
       .subscribe((res: any) => {
         this.paste = res;
-        console.log(res);
       });
   }
 }

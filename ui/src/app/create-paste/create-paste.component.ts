@@ -3,10 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 
-interface DecodedToken {
-  name: string;
-}
-
 @Component({
   selector: 'app-create-paste',
   templateUrl: './create-paste.component.html',
@@ -22,16 +18,13 @@ export class CreatePasteComponent implements OnInit {
   onPasteCreate(paste: { title: string; content: string }) {
     const token = localStorage.getItem('token');
 
-    const author = token ? jwtDecode<DecodedToken>(token).name : undefined;
-    console.log({ ...paste, author });
-
     this.http
-      .post('http://localhost:3001/api/post/', {
-        ...paste,
-        author,
+      .post('http://localhost:3001/api/post/', paste, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
       })
       .subscribe((res: any) => {
-        console.log(res);
         this._router.navigate([`/read/${res.id}`]);
       });
   }
