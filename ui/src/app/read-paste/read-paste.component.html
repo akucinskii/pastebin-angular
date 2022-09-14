@@ -1,24 +1,33 @@
-<div>
-  <h1 class="text-2xl text-center break-all my-2">{{ paste.title }}</h1>
+<div *ngIf="paste; else loading">
+  <div>
+    <h1 class="text-2xl text-center break-all my-2">{{ paste.title }}</h1>
+  </div>
+
+  <div class="mockup-code text-xl max-w-lg break-all p-4">
+    {{ paste.content }}
+  </div>
+
+  <div #container class="my-4">
+    <button
+      class="btn btn-accent"
+      ngxClipboard
+      [cbContent]="'http://localhost:4200/read/' + id"
+      [container]="container"
+    >
+      Copy link to clipboard
+    </button>
+  </div>
+
+  <div class="my-4">
+    <h4 class="text-slate-500">
+      Total Views of this paste: {{ paste.total_views }}
+    </h4>
+    <h3 class="text-slate-300">
+      Created by {{ paste.author ? paste.author.name : "Anonymous" }}
+    </h3>
+  </div>
 </div>
 
-<div class="mockup-code text-xl max-w-lg break-all p-4">
-  {{ paste.content }}
-</div>
-
-<div #container class="my-4">
-  <button
-    class="btn btn-accent"
-    ngxClipboard
-    [cbContent]="'http://localhost:4200/read/' + id"
-    [container]="container"
-  >
-    Copy link to clipboard
-  </button>
-</div>
-
-<div class="my-4">
-  <h4 class="text-slate-500">
-    Total Views of this paste: {{ paste.total_views }}
-  </h4>
-</div>
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

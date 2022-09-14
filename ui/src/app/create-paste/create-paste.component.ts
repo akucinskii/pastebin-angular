@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-create-paste',
@@ -15,10 +16,15 @@ export class CreatePasteComponent implements OnInit {
   ngOnInit(): void {}
 
   onPasteCreate(paste: { title: string; content: string }) {
+    const token = localStorage.getItem('token');
+
     this.http
-      .post('http://localhost:3001/api/post/', paste)
+      .post('http://localhost:3001/api/post/', paste, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
       .subscribe((res: any) => {
-        console.log(res);
         this._router.navigate([`/read/${res.id}`]);
       });
   }

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { ostring, z } from "zod";
 import { buildJsonSchemas } from "fastify-zod";
 
 const postInput = {
@@ -11,6 +11,7 @@ const postGenerated = {
   created_at: z.string(),
   updated_at: z.string(),
   total_views: z.number(),
+  authorId: z.string().or(z.null()),
 };
 
 const createPostSchema = z.object({
@@ -24,7 +25,10 @@ const postResponseSchema = z.object({
 
 export type CreatePostInput = z.infer<typeof createPostSchema>;
 
-export const { schemas: postSchemas, $ref } = buildJsonSchemas({
-  createPostSchema,
-  postResponseSchema,
-});
+export const { schemas: postSchemas, $ref } = buildJsonSchemas(
+  {
+    createPostSchema,
+    postResponseSchema,
+  },
+  { $id: "paste" }
+);

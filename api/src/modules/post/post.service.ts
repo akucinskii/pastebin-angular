@@ -1,18 +1,29 @@
 import { prisma } from "../../utils/prisma";
 import { CreatePostInput } from "./post.schema";
 
-export const createPost = async (data: CreatePostInput) => {
+export const createPost = async (
+  data: CreatePostInput,
+  authorId: string | null
+) => {
   return prisma.post.create({
-    data,
+    data: { ...data, authorId },
   });
 };
 
 export const getPost = async (id: string) => {
-  return prisma.post.findUnique({
+  const post = await prisma.post.findUnique({
     where: {
       id,
     },
+    include: {
+      author: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
+  return post;
 };
 
 export const updateTotalViews = async (id: string) => {

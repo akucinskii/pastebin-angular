@@ -1,15 +1,26 @@
 import { FastifyRequest } from "fastify/types/request";
+import { checkLogin } from "../../utils/checkLogin";
 import { CreatePostInput } from "./post.schema";
 import { createPost, getPost, updateTotalViews } from "./post.service";
 import { IdParams } from "./types";
 
-export const createPostHandler = async (
-  request: FastifyRequest<{ Body: CreatePostInput }>
-) => {
-  const createdPost = await createPost({
-    ...request.body,
-  });
+interface CreatePostBody extends CreatePostInput {
+  authorId: string;
+}
 
+export const createPostHandler = async (
+  request: FastifyRequest<{
+    Body: CreatePostBody;
+  }>
+) => {
+  const user: { id: string | null } = await checkLogin(request);
+
+  const createdPost = await createPost(
+    {
+      ...request.body,
+    },
+    user.id
+  );
   return createdPost;
 };
 
