@@ -4,12 +4,15 @@ import { User } from './user.model';
 
 export const initialState: User = {
   isLoggedIn: false,
+  name: '',
 };
 
 export const userReducer = createReducer(
   initialState,
 
-  on(login, (state, { name }) => ({ isLoggedIn: true, name })),
+  on(login, (entries, { name }) => {
+    return { isLoggedIn: true, name: name };
+  }),
 
-  on(logout, () => ({ isLoggedIn: false, name: undefined }))
+  on(logout, (_) => ({ isLoggedIn: false, name: '' }))
 );

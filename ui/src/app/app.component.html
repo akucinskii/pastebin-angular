@@ -1,38 +1,6 @@
 <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
 <div class="w-100 h-100">
-  <nav
-    class="navbar bg-neutral text-neutral-content gap-4 justify-center md:justify-start"
-  >
-    <a
-      routerLink="/"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-      class="btn normal-case md:text-xl"
-    >
-      Angular pastebin app
-    </a>
-    <a
-      routerLink="/create"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      <button class="btn normal-case md:text-xl">Create new paste</button>
-    </a>
-    <a
-      routerLink="/login"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      <button class="btn normal-case md:text-xl">Login</button>
-    </a>
-    <a
-      routerLink="/register"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      <button class="btn normal-case md:text-xl">Register</button>
-    </a>
-  </nav>
+  <app-navbar></app-navbar>
   <!-- The routed views render in the <router-outlet>-->
   <div
     class="flex flex-col gap-4 justify-center max-h-screen max-w-screen items-center text-center"

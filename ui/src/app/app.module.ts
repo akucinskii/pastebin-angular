@@ -11,6 +11,7 @@ import { ReadPasteComponent } from './read-paste/read-paste.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { userReducer } from './state/user.reducer';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { userReducer } from './state/user.reducer';
     ReadPasteComponent,
     LoginComponent,
     RegisterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

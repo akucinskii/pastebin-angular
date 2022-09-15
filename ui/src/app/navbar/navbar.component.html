@@ -1,0 +1,41 @@
+<nav
+  class="navbar bg-neutral text-neutral-content gap-4 justify-center md:justify-start"
+>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="btn normal-case md:text-xl"
+  >
+    Angular pastebin app
+  </a>
+  <a
+    routerLink="/create"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+  >
+    <button class="btn normal-case md:text-xl">Create new paste</button>
+  </a>
+
+  <ng-template #elseBlock>
+    <a
+      routerLink="/login"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      <button class="btn normal-case md:text-xl">Login</button>
+    </a>
+    <a
+      routerLink="/register"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      <button class="btn normal-case md:text-xl">Register</button>
+    </a>
+  </ng-template>
+  <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
+    <button (click)="logout()" class="btn normal-case md:text-xl">
+      {{ (user | async)!.name }} Logout
+    </button>
+  </div>
+</nav>
