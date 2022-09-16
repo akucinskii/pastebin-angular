@@ -7,6 +7,15 @@
     {{ paste.content }}
   </div>
 
+  <md-editor
+    [ngModelOptions]="{ standalone: true }"
+    id="paste-content"
+    name="content"
+    mode="preview"
+    [(ngModel)]="paste.content"
+    [hideToolbar]="true"
+  ></md-editor>
+
   <div #container class="my-4">
     <button
       class="btn btn-accent"

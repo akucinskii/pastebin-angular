@@ -9,21 +9,27 @@ import jwtDecode from 'jwt-decode';
   styleUrls: ['./create-paste.component.css'],
 })
 export class CreatePasteComponent implements OnInit {
+  content: string = '';
   constructor(private http: HttpClient, private _router: Router) {
     this.http = http;
   }
 
   ngOnInit(): void {}
 
-  onPasteCreate(paste: { title: string; content: string }) {
+  onPasteCreate(paste: { title: string }) {
+    console.log(paste);
     const token = localStorage.getItem('token');
 
     this.http
-      .post('http://localhost:3001/api/post/', paste, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
+      .post(
+        'http://localhost:3001/api/post/',
+        { title: paste.title, content: this.content },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        }
+      )
       .subscribe((res: any) => {
         this._router.navigate([`/read/${res.id}`]);
       });

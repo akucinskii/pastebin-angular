@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { userReducer } from './state/user.reducer';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     HttpClientModule,
     ClipboardModule,
+    FormsModule,
+    LMarkdownEditorModule,
     StoreModule.forRoot({
       user: userReducer,
     }),
