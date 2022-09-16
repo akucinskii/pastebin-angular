@@ -36,11 +36,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           localStorage.setItem('token', res.accessToken);
-
-          const decodedToken: { name: string } = jwtDecode(res.accessToken);
-
-          this.store.dispatch(login({ name: decodedToken.name }));
-
+          this.store.dispatch(login());
           this.alert = 'Login successful';
           this._router.navigate([`/`]);
         },
