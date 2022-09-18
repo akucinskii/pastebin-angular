@@ -1,11 +1,11 @@
 <form
-  class="min-w-md"
+  class="w-96"
   #pasteForm="ngForm"
   (ngSubmit)="onPasteCreate(pasteForm.value)"
 >
-  <h1 class="text-2xl">Create new paste</h1>
+  <h1 class="text-2xl text-center">Create new paste</h1>
 
-  <div class="tw-form-group w-full max-w-md justify-content-center px-2">
+  <div class="tw-form-group w-full justify-content-center px-2">
     <label for="paste-title" class="tw-label">
       <span class="label-text">Title</span>
     </label>
@@ -18,7 +18,7 @@
       ngModel
     />
   </div>
-  <div class="tw-form-group w-full max-w-md px-2">
+  <div class="tw-form-group w-full w-lg px-2">
     <label for="paste-content" class="tw-label"
       ><span class="label-text">Content</span>
     </label>
@@ -28,9 +28,12 @@
       name="content"
       [(ngModel)]="content"
       [hideToolbar]="true"
+      height="500px"
       [options]="{ showPreviewPanel: false }"
       maxlength="10000"
     ></md-editor>
   </div>
-  <button type="submit" class="tw-btn tw-btn-accent mt-2">Submit</button>
+  <div class="text-center justify-items-center">
+    <button type="submit" class="tw-btn tw-btn-accent mt-2">Submit</button>
+  </div>
 </form>
