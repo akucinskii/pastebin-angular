@@ -1,29 +1,39 @@
-<form #pasteForm="ngForm" (ngSubmit)="onPasteCreate(pasteForm.value)">
-  <h1 class="text-2xl">Create new paste</h1>
-  <div class="form-group w-full max-w-md px-2">
-    <label for="paste-title" class="label">
+<form
+  class="flex flex-col md:w-[500px] items-center justify-items-center"
+  #pasteForm="ngForm"
+  (ngSubmit)="onPasteCreate(pasteForm.value)"
+>
+  <h1 class="text-2xl text-center">Create new paste</h1>
+
+  <div class="tw-form-group text-left justify-items-center px-2">
+    <label for="paste-title" class="tw-label">
       <span class="label-text">Title</span>
     </label>
     <input
       type="text"
-      class="form-control input input-bordered input-accent w-full max-w-md text-lg"
+      class="form-control tw-input tw-input-bordered tw-input-accent w-full max-w-md text-lg"
       id="paste-title"
       name="title"
       placeholder="Paste Title"
       ngModel
     />
   </div>
-  <div class="form-group w-full max-w-md px-2">
-    <label for="paste-content" class="label"
+  <div class="tw-form-group w-full w-lg px-2">
+    <label for="paste-content" class="tw-label"
       ><span class="label-text">Content</span>
     </label>
-    <textarea
-      class="form-control textarea textarea-accent w-full max-w-md text-lg"
+    <md-editor
+      [ngModelOptions]="{ standalone: true }"
       id="paste-content"
-      rows="3"
       name="content"
-      ngModel
-    ></textarea>
+      [(ngModel)]="content"
+      [hideToolbar]="true"
+      height="500px"
+      [options]="{ showPreviewPanel: false }"
+      maxlength="10000"
+    ></md-editor>
   </div>
-  <button type="submit" class="btn btn-accent mt-2">Submit</button>
+  <div class="text-center justify-items-center">
+    <button type="submit" class="tw-btn tw-btn-accent mt-2">Submit</button>
+  </div>
 </form>

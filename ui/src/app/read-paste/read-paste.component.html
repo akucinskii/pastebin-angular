@@ -1,15 +1,28 @@
-<div *ngIf="paste; else loading">
+<div
+  class="h-full w-screen p-2 sm:max-w-sm lg:max-w-lg"
+  *ngIf="paste; else loading"
+>
   <div>
-    <h1 class="text-2xl text-center break-all my-2">{{ paste.title }}</h1>
+    <h1 class="text-lg lg:text-2xl text-center break-all my-2">
+      {{ paste.title }}
+    </h1>
   </div>
 
-  <div class="mockup-code text-xl max-w-lg break-all p-4">
+  <!-- <md-editor
+    [ngModelOptions]="{ standalone: true }"
+    id="paste-content"
+    name="content"
+    mode="preview"
+    [(ngModel)]="paste.content"
+  ></md-editor> -->
+
+  <markdown ngPreserveWhitespaces lineNumbers commandLine>
     {{ paste.content }}
-  </div>
+  </markdown>
 
-  <div #container class="my-4">
+  <div #container class="text-center">
     <button
-      class="btn btn-accent"
+      class="my-4 tw-btn tw-btn-accent"
       ngxClipboard
       [cbContent]="'http://localhost:4200/read/' + id"
       [container]="container"
@@ -18,11 +31,11 @@
     </button>
   </div>
 
-  <div class="my-4">
+  <div class="text-center">
     <h4 class="text-slate-500">
       Total Views of this paste: {{ paste.total_views }}
     </h4>
-    <h3 class="text-slate-300">
+    <h3 class="text-slate-300 text-center">
       Created by {{ paste.author ? paste.author.name : "Anonymous" }}
     </h3>
   </div>

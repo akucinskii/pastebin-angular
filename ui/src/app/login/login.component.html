@@ -1,23 +1,23 @@
 <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-  <div class="form-group w-full max-w-md px-2">
+  <div class="tw-form-group w-full max-w-md px-2">
     <label for="login-name" class="label">
       <span class="label-text">Username</span>
     </label>
     <input
       type="text"
-      class="form-control input input-bordered input-accent w-full max-w-md text-lg"
+      class="form-control tw-input tw-input-bordered tw-input-accent w-full max-w-md text-lg"
       id="login-name"
       name="name"
       placeholder="Username..."
       ngModel
     />
   </div>
-  <div class="form-group w-full max-w-md px-2">
+  <div class="tw-form-group w-full max-w-md px-2">
     <label for="paste-content" class="label"
       ><span class="label-text">Password</span>
     </label>
     <input
-      class="form-control input input-accent w-full max-w-md text-lg"
+      class="tw-form-control tw-input tw-input-accent w-full max-w-md text-lg"
       id="paste-content"
       type="password"
       name="password"
@@ -25,7 +25,9 @@
       ngModel
     />
   </div>
-  <button type="submit" class="btn btn-accent mt-2">Login</button>
+  <div class="text-center justify-items-center">
+    <button type="submit" class="tw-btn tw-btn-accent mt-2">Login</button>
 
-  <h1 class="text-red-700">{{ alert }}</h1>
+    <h1 class="text-red-700">{{ alert }}</h1>
+  </div>
 </form>

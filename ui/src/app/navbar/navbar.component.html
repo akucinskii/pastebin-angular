@@ -1,41 +1,107 @@
 <nav
-  class="navbar bg-neutral text-neutral-content gap-4 justify-center md:justify-start"
+  class="tw-navbar bg-neutral text-neutral-content gap-4 justify-center md:justify-start"
 >
-  <a
-    routerLink="/"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-    class="btn normal-case md:text-xl"
-  >
-    Angular pastebin app
-  </a>
-  <a
-    routerLink="/create"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-  >
-    <button class="btn normal-case md:text-xl">Create new paste</button>
-  </a>
-
-  <ng-template #elseBlock>
+  <div class="tw-navbar-start lg:hidden">
+    <div class="tw-dropdown">
+      <label tabindex="0" class="tw-btn tw-btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </label>
+      <ul
+        tabindex="0"
+        class="tw-menu tw-menu-compact tw-dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
+      >
+        <li>
+          <a
+            routerLink="/create"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+          >
+            <button class="tw-btn normal-case text-decoration-none md:text-xl">
+              Create new paste
+            </button>
+          </a>
+        </li>
+        <li>
+          <ng-template #elseBlock>
+            <a
+              routerLink="/login"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+            >
+              <button class="tw-btn normal-case md:text-xl">Login</button>
+            </a>
+            <a
+              routerLink="/register"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+            >
+              <button class="tw-btn normal-case md:text-xl">Register</button>
+            </a>
+          </ng-template>
+          <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
+            <button (click)="logout()" class="tw-btn normal-case md:text-xl">
+              {{ (user | async)!.name }} Logout
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tw-navbar-end lg:tw-navbar-start">
     <a
-      routerLink="/login"
+      routerLink="/"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      class="tw-btn normal-case md:text-xl"
+    >
+      Angular pastebin app
+    </a>
+  </div>
+  <div class="tw-navbar-center hidden lg:flex">
+    <a
+      routerLink="/create"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
     >
-      <button class="btn normal-case md:text-xl">Login</button>
+      <button class="tw-btn normal-case text-decoration-none md:text-xl">
+        Create new paste
+      </button>
     </a>
-    <a
-      routerLink="/register"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      <button class="btn normal-case md:text-xl">Register</button>
-    </a>
-  </ng-template>
-  <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
-    <button (click)="logout()" class="btn normal-case md:text-xl">
-      {{ (user | async)!.name }} Logout
-    </button>
+  </div>
+  <div class="tw-navbar-end hidden lg:flex">
+    <ng-template #elseBlock>
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        <button class="tw-btn normal-case md:text-xl">Login</button>
+      </a>
+      <a
+        routerLink="/register"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        <button class="tw-btn normal-case md:text-xl">Register</button>
+      </a>
+    </ng-template>
+    <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
+      <button (click)="logout()" class="tw-btn normal-case md:text-xl">
+        {{ (user | async)!.name }} Logout
+      </button>
+    </div>
   </div>
 </nav>

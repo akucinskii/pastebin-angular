@@ -3,3 +3,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+body {
+  background-color: #2a303c !important;
+}
+
+.preview-panel {
+  background-color: inherit !important;
+  border-left: 0px !important;
+}
+
+.ace-tm {
+  background-color: #333333 !important;
+  color: #eee;
+}
+
+.ace_gutter {
+  background-color: #444 !important;
+  color: #cdcdcd;
+}
+
+.ace_gutter-active-line {
+  background-color: rgb(54, 54, 54) !important;
+  color: #cdcdcd !important;
+}
+
+.ace_gutter-cell {
+  color: #888;
+  padding: 0 2dsapx 0 2px !important;
+  text-align: left;
+}
+
+.md-footer {
+  background-color: #444 !important;
+  color: #cdcdcd;
+}
+
+.md-editor-container {
+  border-width: 0 !important;
+  background-color: #2a303c !important;
+}
+
+.ace_print-margin {
+  width: 0px !important;
+}
+
+.command-line {
+  overflow: scroll !important;
+  max-height: 60vh;
+  width: 100%;
+  height: 100%;
+}
