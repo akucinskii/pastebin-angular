@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-create-paste',
@@ -25,7 +24,7 @@ export class CreatePasteComponent implements OnInit {
         'http://localhost:3001/api/post/',
         {
           title: paste.title,
-          content: '```' + 'html \n' + this.content + '```',
+          content: '```' + 'html \n' + this.content,
         },
         {
           headers: {

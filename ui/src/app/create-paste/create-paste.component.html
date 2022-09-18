@@ -1,11 +1,11 @@
 <form
-  class="w-96"
+  class="flex flex-col md:w-[500px] items-center justify-items-center"
   #pasteForm="ngForm"
   (ngSubmit)="onPasteCreate(pasteForm.value)"
 >
   <h1 class="text-2xl text-center">Create new paste</h1>
 
-  <div class="tw-form-group w-full justify-content-center px-2">
+  <div class="tw-form-group text-left justify-items-center px-2">
     <label for="paste-title" class="tw-label">
       <span class="label-text">Title</span>
     </label>

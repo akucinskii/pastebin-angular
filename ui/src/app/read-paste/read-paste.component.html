@@ -1,15 +1,24 @@
-<div class="md:w-80 sm:w-full" *ngIf="paste; else loading">
+<div
+  class="h-full w-screen p-2 sm:max-w-sm lg:max-w-lg"
+  *ngIf="paste; else loading"
+>
   <div>
-    <h1 class="text-2xl text-center break-all my-2">{{ paste.title }}</h1>
+    <h1 class="text-lg lg:text-2xl text-center break-all my-2">
+      {{ paste.title }}
+    </h1>
   </div>
 
-  <md-editor
+  <!-- <md-editor
     [ngModelOptions]="{ standalone: true }"
     id="paste-content"
     name="content"
     mode="preview"
     [(ngModel)]="paste.content"
-  ></md-editor>
+  ></md-editor> -->
+
+  <markdown ngPreserveWhitespaces lineNumbers commandLine>
+    {{ paste.content }}
+  </markdown>
 
   <div #container class="text-center">
     <button
