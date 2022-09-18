@@ -36,12 +36,28 @@
             ],
             "scripts": [
               "node_modules/ngx-markdown-editor/assets/highlight.js/highlight.min.js",
-
+              "node_modules/ngx-markdown-editor/assets/marked.min.js",
               "node_modules/marked/marked.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-css.min.js",
-              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+              "node_modules/prismjs/components/prism-python.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-java.min.js",
+              "node_modules/prismjs/components/prism-c.min.js",
+              "node_modules/prismjs/components/prism-cpp.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-csharp.min.js",
+              "node_modules/prismjs/components/prism-php.min.js",
+              "node_modules/prismjs/components/prism-json.min.js",
+              "node_modules/prismjs/components/prism-html.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js",
+              "node_modules/prismjs/components/prism-sql.min.js",
+              "node_modules/prismjs/components/prism-go.min.js",
+              "node_modules/prismjs/components/prism-ruby.min.js",
+              "node_modules/prismjs/components/prism-rust.min.js",
+              "node_modules/prismjs/components/prism-swift.min.js"
             ]
           },
           "configurations": {

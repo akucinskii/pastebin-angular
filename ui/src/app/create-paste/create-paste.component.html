@@ -5,20 +5,22 @@
 >
   <h1 class="text-2xl text-center">Create new paste</h1>
 
-  <div class="tw-form-group text-left justify-items-center px-2">
-    <label for="paste-title" class="tw-label">
+  <div
+    class="tw-form-group w-full flex flex-col items-center justify-items-center px-2"
+  >
+    <label for="paste-title" class="tw-label w-full max-w-sm text-left">
       <span class="label-text">Title</span>
     </label>
     <input
       type="text"
-      class="form-control tw-input tw-input-bordered tw-input-accent w-full max-w-md text-lg"
+      class="form-control tw-input tw-input-bordered tw-input-accent w-full max-w-sm text-lg"
       id="paste-title"
       name="title"
       placeholder="Paste Title"
       ngModel
     />
   </div>
-  <div class="tw-form-group w-full w-lg px-2">
+  <div class="text-left tw-form-group w-full w-lg px-2">
     <label for="paste-content" class="tw-label"
       ><span class="label-text">Content</span>
     </label>
@@ -33,7 +35,22 @@
       maxlength="10000"
     ></md-editor>
   </div>
-  <div class="text-center justify-items-center">
-    <button type="submit" class="tw-btn tw-btn-accent mt-2">Submit</button>
+
+  <div class="w-full flex flex-col text-left justify-items-center items-center">
+    <label for="syntax_language" class="tw-label text-left w-full max-w-sm"
+      ><span class="label-text">Syntax</span>
+    </label>
+    <select
+      id="syntax_language"
+      name="syntax_language"
+      class="tw-select tw-select-accent w-full max-w-sm"
+      ngModel
+    >
+      <option selected>none</option>
+      <option *ngFor="let language of languagesList">{{ language }}</option>
+    </select>
+  </div>
+  <div class="text-center justify-items-center mt-2">
+    <button type="submit" class="tw-btn tw-btn-accent">Submit</button>
   </div>
 </form>

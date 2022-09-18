@@ -11,14 +11,15 @@ datasource db {
 }
 
 model Post {
-  id          String   @id @default(uuid())
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  title       String
-  content     String
-  total_views Int      @default(0)
-  author      User?    @relation(fields: [authorId], references: [id])
-  authorId    String?
+  id              String   @id @default(uuid())
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  title           String
+  content         String
+  total_views     Int      @default(0)
+  author          User?    @relation(fields: [authorId], references: [id])
+  authorId        String?
+  syntax_language String   @default("None")
 }
 
 model User {
