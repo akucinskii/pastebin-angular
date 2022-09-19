@@ -1,6 +1,6 @@
 <div
   class="h-full w-screen p-2 sm:max-w-sm lg:max-w-lg"
-  *ngIf="paste; else loading"
+  *ngIf="paste"
 >
   <div>
     <h1 class="text-lg lg:text-2xl text-center break-all my-2">
@@ -16,11 +16,15 @@
     [(ngModel)]="paste.content"
   ></md-editor> -->
 
-  <markdown ngPreserveWhitespaces lineNumbers commandLine>
+  <markdown ngPreserveWhitespaces lineNumbers>
+    ```{{ paste.syntax_language }}
     {{ paste.content }}
+    ```
+
   </markdown>
 
   <div #container class="text-center">
+    
     <button
       class="my-4 tw-btn tw-btn-accent"
       ngxClipboard

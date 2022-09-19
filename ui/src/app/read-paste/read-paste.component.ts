@@ -6,6 +6,7 @@ interface PasteInterface {
   title: string;
   content: string;
   total_views: number;
+  syntax_language: string;
   author: {
     id: string;
     name: string;
@@ -25,12 +26,11 @@ export class ReadPasteComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-
+    
     this.http
-      .get(`http://localhost:3001/api/post/${this.id}`)
-      .subscribe((res: any) => {
-        this.paste = res;
-        console.log(this.paste);
-      });
+    .get(`http://localhost:3001/api/post/${this.id}`)
+    .subscribe((res: any) => {
+      this.paste = res;
+    })
   }
 }

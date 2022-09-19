@@ -29,7 +29,8 @@ export class CreatePasteComponent implements OnInit {
         'http://localhost:3001/api/post/',
         {
           title: paste.title,
-          content: '```' + `${paste.syntax_language} \n` + this.content,
+          content: this.content,
+          syntax_language: paste.syntax_language || "None",
         },
         {
           headers: {
