@@ -23,10 +23,17 @@
 
   </markdown>
 
-  <div #container class="text-center">
-    
+  <div #container class=" my-4 flex flex-col md:flex-row justify-center text-center gap-2">
     <button
-      class="my-4 tw-btn tw-btn-accent"
+      class="tw-btn tw-btn-accent"
+      ngxClipboard
+      [cbContent]="paste.content"
+      [container]="container"
+    >
+      Copy Paste content
+    </button>
+    <button
+      class=" tw-btn tw-btn-accent"
       ngxClipboard
       [cbContent]="'http://localhost:4200/read/' + id"
       [container]="container"
