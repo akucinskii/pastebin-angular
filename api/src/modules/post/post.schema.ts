@@ -6,6 +6,8 @@ const postInput = {
   content: z.string(),
 };
 
+
+
 const postGenerated = {
   id: z.string(),
   created_at: z.string(),
@@ -13,6 +15,11 @@ const postGenerated = {
   total_views: z.number(),
   authorId: z.string().or(z.null()),
 };
+
+
+
+const userIdParamSchema = z.object({id: z.string()});
+
 
 const createPostSchema = z.object({
   ...postInput,
@@ -23,12 +30,17 @@ const postResponseSchema = z.object({
   ...postInput,
 });
 
+const postListResponseSchema = z.array(postResponseSchema);
+
+export type UserParams = z.infer<typeof userIdParamSchema> 
 export type CreatePostInput = z.infer<typeof createPostSchema>;
 
 export const { schemas: postSchemas, $ref } = buildJsonSchemas(
   {
     createPostSchema,
     postResponseSchema,
+    userIdParamSchema,
+    postListResponseSchema,
   },
   { $id: "paste" }
 );

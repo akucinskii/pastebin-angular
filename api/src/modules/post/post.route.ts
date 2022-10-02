@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify/types/instance";
-import { createPostHandler, getPostHandler } from "./post.controller";
+import { createPostHandler, getPostHandler, getUserPostsHandler } from "./post.controller";
 import { $ref } from "./post.schema";
 
 export const postRoutes = async (server: FastifyInstance) => {
@@ -26,4 +26,18 @@ export const postRoutes = async (server: FastifyInstance) => {
     },
     getPostHandler
   );
+
+  server.get(
+    "/user/:id",
+    {
+      schema: {
+        params: $ref("userIdSchema"),
+        response:
+        {
+          200: $ref("postListResponseSchema")
+        }
+      },
+    },
+    getUserPostsHandler
+  )
 };

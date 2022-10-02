@@ -26,6 +26,24 @@ export const getPost = async (id: string) => {
   return post;
 };
 
+export const getUserPosts = async (userId: string) => {
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: userId,
+    },
+    include: {
+      author: {
+        select: {
+          name: true,
+        },
+      }
+    }
+  });
+
+  console.log(posts)
+  return posts;
+}
+
 export const updateTotalViews = async (id: string) => {
   return prisma.post.update({
     where: {
@@ -38,3 +56,5 @@ export const updateTotalViews = async (id: string) => {
     },
   });
 };
+
+
