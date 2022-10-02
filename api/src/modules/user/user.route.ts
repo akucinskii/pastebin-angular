@@ -36,6 +36,9 @@ async function userRoutes(server: FastifyInstance) {
   server.get(
     "/",
     {
+      schema: {
+        headers: $ref("authHeaderSchema"),
+      },
       preHandler: [server.authenticate],
     },
     getUsersHandler

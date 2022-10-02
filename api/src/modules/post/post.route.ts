@@ -19,9 +19,10 @@ export const postRoutes = async (server: FastifyInstance) => {
     "/:id",
     {
       schema: {
-        params: {
-          id: { type: "string" },
-        },
+        params: $ref("userIdParamSchema"),
+        response: {
+          200: $ref("postResponseSchema"),
+        }
       },
     },
     getPostHandler
@@ -31,7 +32,7 @@ export const postRoutes = async (server: FastifyInstance) => {
     "/user/:id",
     {
       schema: {
-        params: $ref("userIdSchema"),
+        params: $ref("userIdParamSchema"),
         response:
         {
           200: $ref("postListResponseSchema")

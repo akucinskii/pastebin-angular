@@ -28,6 +28,9 @@ const createPostSchema = z.object({
 const postResponseSchema = z.object({
   ...postGenerated,
   ...postInput,
+  author: z.object({
+    name: z.string(),
+  }),
 });
 
 const postListResponseSchema = z.array(postResponseSchema);
