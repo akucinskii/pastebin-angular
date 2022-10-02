@@ -16,5 +16,6 @@ Techstack: angular, Ngrx, nodejs, prisma, fastify, postgresql,
 - [x] - Users/Anonymous users can create/read/copy pastes
 - [x] - Views counter
 - [ ] - User can edit/delete paste
-- [ ] - Pretty Home page
+- [ ] - Home page
+- [ ] - Profile page
 - [ ] - Public/private pastes 
