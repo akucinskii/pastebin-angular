@@ -3,12 +3,12 @@ import { verifyPassword } from "../../utils/hash";
 import { CreateUserInput, LoginInput } from "./user.schema";
 import { createUser, findUserByName, findUsers } from "./user.service";
 
-export async function registerUserHandler(
+export const registerUserHandler = async (
   request: FastifyRequest<{
     Body: CreateUserInput;
   }>,
   reply: FastifyReply
-) {
+) => {
   const body = request.body;
 
   try {
@@ -19,14 +19,14 @@ export async function registerUserHandler(
     console.log(e);
     return reply.code(500).send(e);
   }
-}
+};
 
-export async function loginHandler(
+export const loginHandler = async (
   request: FastifyRequest<{
     Body: LoginInput;
   }>,
   reply: FastifyReply
-) {
+) => {
   const body = request.body;
 
   // find a user by Username
@@ -54,10 +54,10 @@ export async function loginHandler(
   return reply.code(401).send({
     message: "Invalid email or password",
   });
-}
+};
 
-export async function getUsersHandler() {
+export const getUsersHandler = async () => {
   const users = await findUsers();
 
   return users;
-}
+};
