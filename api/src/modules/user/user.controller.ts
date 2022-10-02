@@ -1,7 +1,13 @@
 import { FastifyReply, FastifyRequest } from "fastify";
+import { checkLogin } from "../../utils/checkLogin";
 import { verifyPassword } from "../../utils/hash";
 import { CreateUserInput, LoginInput } from "./user.schema";
-import { createUser, findUserByName, findUsers } from "./user.service";
+import {
+  createUser,
+  findUserByName,
+  findUsers,
+  updateUserName,
+} from "./user.service";
 
 export const registerUserHandler = async (
   request: FastifyRequest<{
@@ -47,6 +53,8 @@ export const loginHandler = async (
 
   if (correctPassword) {
     const { password, salt, ...rest } = user;
+
+    console.log(request.jwt.sign(rest));
     // generate access token
     return { accessToken: request.jwt.sign(rest) };
   }
@@ -60,4 +68,25 @@ export const getUsersHandler = async () => {
   const users = await findUsers();
 
   return users;
+};
+
+export const updateUsernameHandler = async (
+  request: FastifyRequest<{
+    Body: { name: string };
+  }>
+) => {
+  const user: { id: string | null } = await checkLogin(request);
+
+  const { name } = request.body;
+  const { id } = user;
+
+  if (!id) {
+    return {
+      message: "You are not authorized",
+    };
+  }
+
+  const updatedUser = await updateUserName(id, name);
+
+  return updatedUser;
 };

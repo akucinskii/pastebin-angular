@@ -19,6 +19,11 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
+
+const updateUserNameSchema = z.object({
+  name: z.string(),
+});
+
 const loginResponseSchema = z.object({
   accessToken: z.string(),
 });
@@ -37,7 +42,8 @@ export const { schemas: userSchemas, $ref } = buildJsonSchemas(
     createUserResponseSchema,
     loginSchema,
     loginResponseSchema,
-    authHeaderSchema
+    authHeaderSchema,
+    updateUserNameSchema,
   },
   { $id: "user" }
 );
