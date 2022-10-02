@@ -1,8 +1,13 @@
 import { FastifyRequest } from "fastify/types/request";
 import { checkLogin } from "../../utils/checkLogin";
 import { CreatePostInput } from "./post.schema";
-import { createPost, getPost, getUserPosts, updateTotalViews } from "./post.service";
-import {UserParams} from './post.schema'
+import {
+  createPost,
+  getPost,
+  getUserPosts,
+  updateTotalViews,
+} from "./post.service";
+import { UserParams } from "./post.schema";
 
 interface CreatePostBody extends CreatePostInput {
   authorId: string;
@@ -34,12 +39,10 @@ export const getPostHandler = async (
   return post;
 };
 
-
-export const getUserPostsHandler = async (request: FastifyRequest<{Params: UserParams}>) => {
-  
-
+export const getUserPostsHandler = async (
+  request: FastifyRequest<{ Params: UserParams }>
+) => {
   const posts = await getUserPosts(request.params.id);
 
-
-  return posts
-}
+  return posts;
+};
