@@ -1,7 +1,9 @@
-# Pastebin clone, made to get better with angular, fastify
+# Pastebin clone 
+I made it to get better with angular and fastify, 
+I didn't have time to finish it, but main functionality works.
 
 Techstack: angular, Ngrx, nodejs, prisma, fastify, postgresql
-## How to run
+## How to run 
 
     ./pastebin-postgres
 
