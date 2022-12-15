@@ -14,6 +14,7 @@ import { userReducer } from './state/user.reducer';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MarkdownModule } from 'ngx-markdown';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

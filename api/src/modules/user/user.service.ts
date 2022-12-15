@@ -2,6 +2,9 @@ import { hashPassword } from "../../utils/hash";
 import { prisma } from "../../utils/prisma";
 import { CreateUserInput } from "./user.schema";
 
+// POST
+
+
 export async function createUser(input: CreateUserInput) {
   const { password, ...rest } = input;
 
@@ -13,6 +16,8 @@ export async function createUser(input: CreateUserInput) {
 
   return user;
 }
+
+// GET
 
 export async function findUserByName(name: string) {
   return prisma.user.findUnique({
@@ -30,3 +35,22 @@ export async function findUsers() {
     },
   });
 }
+
+
+
+// UPDATE
+
+export async function updateUserName(id: string, name: string ) {
+  return prisma.user.update({
+    where: {
+      id,
+    },
+    data: {
+      name,
+    }
+  });
+}
+
+
+
+
