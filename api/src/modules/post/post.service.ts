@@ -1,4 +1,5 @@
 import { prisma } from "../../utils/prisma";
+import { postRoutes } from "./post.route";
 import { CreatePostInput } from "./post.schema";
 
 export const createPost = async (
@@ -15,13 +16,6 @@ export const getPost = async (id: string) => {
     where: {
       id,
     },
-    include: {
-      author: {
-        select: {
-          name: true,
-        },
-      },
-    },
   });
   return post;
 };
@@ -36,13 +30,13 @@ export const getUserPosts = async (userId: string) => {
         select: {
           name: true,
         },
-      }
-    }
+      },
+    },
   });
 
-  console.log(posts)
+  console.log(posts);
   return posts;
-}
+};
 
 export const updateTotalViews = async (id: string) => {
   return prisma.post.update({
@@ -56,5 +50,3 @@ export const updateTotalViews = async (id: string) => {
     },
   });
 };
-
-
