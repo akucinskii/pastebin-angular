@@ -1,14 +1,20 @@
 import { FastifyReply, FastifyRequest } from "fastify";
+import { checkLogin } from "../../utils/checkLogin";
 import { verifyPassword } from "../../utils/hash";
 import { CreateUserInput, LoginInput } from "./user.schema";
-import { createUser, findUserByName, findUsers } from "./user.service";
+import {
+  createUser,
+  findUserByName,
+  findUsers,
+  updateUserName,
+} from "./user.service";
 
-export async function registerUserHandler(
+export const registerUserHandler = async (
   request: FastifyRequest<{
     Body: CreateUserInput;
   }>,
   reply: FastifyReply
-) {
+) => {
   const body = request.body;
 
   try {
@@ -19,14 +25,14 @@ export async function registerUserHandler(
     console.log(e);
     return reply.code(500).send(e);
   }
-}
+};
 
-export async function loginHandler(
+export const loginHandler = async (
   request: FastifyRequest<{
     Body: LoginInput;
   }>,
   reply: FastifyReply
-) {
+) => {
   const body = request.body;
 
   // find a user by Username
@@ -47,6 +53,8 @@ export async function loginHandler(
 
   if (correctPassword) {
     const { password, salt, ...rest } = user;
+
+    console.log(request.jwt.sign(rest));
     // generate access token
     return { accessToken: request.jwt.sign(rest) };
   }
@@ -54,10 +62,31 @@ export async function loginHandler(
   return reply.code(401).send({
     message: "Invalid email or password",
   });
-}
+};
 
-export async function getUsersHandler() {
+export const getUsersHandler = async () => {
   const users = await findUsers();
 
   return users;
-}
+};
+
+export const updateUsernameHandler = async (
+  request: FastifyRequest<{
+    Body: { name: string };
+  }>
+) => {
+  const user: { id: string | null } = await checkLogin(request);
+
+  const { name } = request.body;
+  const { id } = user;
+
+  if (!id) {
+    return {
+      message: "You are not authorized",
+    };
+  }
+
+  const updatedUser = await updateUserName(id, name);
+
+  return updatedUser;
+};

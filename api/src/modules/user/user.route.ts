@@ -3,6 +3,7 @@ import {
   loginHandler,
   registerUserHandler,
   getUsersHandler,
+  updateUsernameHandler,
 } from "./user.controller";
 import { $ref } from "./user.schema";
 
@@ -36,9 +37,27 @@ async function userRoutes(server: FastifyInstance) {
   server.get(
     "/",
     {
+      schema: {
+        headers: $ref("authHeaderSchema"),
+      },
       preHandler: [server.authenticate],
     },
     getUsersHandler
+  );
+
+  server.put(
+    "/",
+    {
+      schema: {
+        headers: $ref("authHeaderSchema"),
+        body: $ref("updateUserNameSchema"),
+        response: {
+          200: $ref("updateUserNameSchema"),
+        },
+      },
+      preHandler: [server.authenticate],
+    },
+    updateUsernameHandler
   );
 }
 

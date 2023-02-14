@@ -21,18 +21,28 @@
       </label>
       <ul
         tabindex="0"
-        class="tw-menu tw-menu-compact tw-dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
+        class="tw-menu tw-menu-compact tw-dropdown-content text-lg mt-3 p-2 shadow bg-neutral overflow-hidden rounded-box w-52"
       >
         <li>
           <a
             routerLink="/create"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
+            class=""
           >
-            <button class="tw-btn normal-case text-decoration-none md:text-xl">
-              Create new paste
-            </button>
+            Create new paste
           </a>
+        </li>
+        <li *ngIf="(user | async)!.isLoggedIn">
+          <div>
+            <a
+              routerLink="/profile"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+            >
+              {{ (user | async)!.name }} Profile
+            </a>
+          </div>
         </li>
         <li>
           <ng-template #elseBlock>
@@ -41,20 +51,18 @@
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
             >
-              <button class="tw-btn normal-case md:text-xl">Login</button>
+              Login
             </a>
             <a
               routerLink="/register"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
             >
-              <button class="tw-btn normal-case md:text-xl">Register</button>
+              Register
             </a>
           </ng-template>
           <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
-            <button (click)="logout()" class="tw-btn normal-case md:text-xl">
-              {{ (user | async)!.name }} Logout
-            </button>
+            <button (click)="logout()" class="">Logout</button>
           </div>
         </li>
       </ul>
@@ -65,24 +73,40 @@
       routerLink="/"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
-      class="tw-btn normal-case md:text-xl"
+      class="tw-btn normal-case md:text-xl hidden sm:flex"
     >
       Angular pastebin app
     </a>
-  </div>
-  <div class="tw-navbar-center hidden lg:flex">
+
     <a
       routerLink="/create"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
     >
-      <button class="tw-btn normal-case text-decoration-none md:text-xl">
+      <button
+        class="tw-btn normal-case text-decoration-none whitespace-nowrap md:text-xl"
+      >
         Create new paste
       </button>
     </a>
   </div>
+
   <div class="tw-navbar-end hidden lg:flex">
-    <ng-template #elseBlock>
+    <div *ngIf="(user | async)!.isLoggedIn; else elseDesktopBlock">
+      <a
+        routerLink="/profile"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        <button class="tw-btn normal-case md:text-xl">
+          {{ (user | async)!.name }} Profile
+        </button>
+      </a>
+      <button (click)="logout()" class="tw-btn normal-case md:text-xl">
+        Logout
+      </button>
+    </div>
+    <ng-template #elseDesktopBlock>
       <a
         routerLink="/login"
         routerLinkActive="active"
@@ -98,10 +122,5 @@
         <button class="tw-btn normal-case md:text-xl">Register</button>
       </a>
     </ng-template>
-    <div *ngIf="(user | async)!.isLoggedIn; else elseBlock">
-      <button (click)="logout()" class="tw-btn normal-case md:text-xl">
-        {{ (user | async)!.name }} Logout
-      </button>
-    </div>
   </div>
 </nav>

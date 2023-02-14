@@ -1,4 +1,5 @@
 import { prisma } from "../../utils/prisma";
+import { postRoutes } from "./post.route";
 import { CreatePostInput } from "./post.schema";
 
 export const createPost = async (
@@ -15,6 +16,15 @@ export const getPost = async (id: string) => {
     where: {
       id,
     },
+  });
+  return post;
+};
+
+export const getUserPosts = async (userId: string) => {
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: userId,
+    },
     include: {
       author: {
         select: {
@@ -23,7 +33,9 @@ export const getPost = async (id: string) => {
       },
     },
   });
-  return post;
+
+  console.log(posts);
+  return posts;
 };
 
 export const updateTotalViews = async (id: string) => {
